@@ -1,6 +1,8 @@
-import 'package:dio_cursos/app/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'app/views/courses_view/courses_view.dart';
+import 'app/views/home_view/home_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       getPages: [
         GetPage(name: '/', page: () => HomeView()),
+        GetPage(name: 'courses', page: () => CoursesView()),
       ],
     );
   }
