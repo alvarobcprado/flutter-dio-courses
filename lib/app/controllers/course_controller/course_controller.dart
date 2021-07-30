@@ -6,8 +6,8 @@ class CourseController extends GetxController {
 
   @override
   void onInit() {
-    course.name?.value = "Teste Curso";
-    course.description?.value = "Testando esse Cursão";
+    course.name = "Teste Curso".obs;
+    course.description = "Testando esse Cursão".obs;
     super.onInit();
   }
 }
