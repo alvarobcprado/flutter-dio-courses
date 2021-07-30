@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class HomeView extends StatelessWidget {
         title: Text("Dio Cursos"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed("/courses"),
             icon: Icon(Icons.plus_one),
           ),
         ],
