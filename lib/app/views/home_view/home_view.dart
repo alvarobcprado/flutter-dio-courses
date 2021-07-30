@@ -1,3 +1,4 @@
+import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,9 +7,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CourseController c = Get.put(CourseController());
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dio Cursos"),
+        title: Obx(
+          () => Text("${c.course.name}"),
+        ),
         actions: [
           IconButton(
             onPressed: () => Get.toNamed("/courses"),
