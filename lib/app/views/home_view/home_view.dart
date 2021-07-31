@@ -1,4 +1,5 @@
 import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
+import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,19 +12,17 @@ class HomeView extends StatelessWidget {
     final CourseController c = Get.put(CourseController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: Obx(
-          () => Text("${c.course.name}"),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => Get.toNamed("/courses"),
-            icon: Icon(Icons.plus_one),
-          ),
-        ],
-      ),
       body: Container(
+        width: double.infinity,
         decoration: BackgroundBoxDecoration.getBoxDecoration(),
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Column(
+            children: [
+              AppBarWidget(),
+            ],
+          ),
+        ),
       ),
     );
   }
