@@ -1,4 +1,3 @@
-import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CourseController c = Get.put(CourseController());
-
     return Scaffold(
       body: Container(
         width: double.infinity,

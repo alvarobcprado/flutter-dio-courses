@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/repositories/course_repository/course_repository.dart';
-import 'package:dio_cursos/app/views/home_view/home_view.dart';
-import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/main.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
