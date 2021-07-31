@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class CourseFormWidget extends StatefulWidget {
   const CourseFormWidget({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
         child: Column(
           children: [
             TextFormField(
+              validator: RequiredValidator(errorText: "Campo obrigatório"),
               decoration: InputDecoration(
                 labelText: "Nome do Curso:",
                 border: OutlineInputBorder(),
@@ -26,6 +28,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             ),
             SizedBox(height: 16),
             TextFormField(
+              validator: RequiredValidator(errorText: "Campo obrigatório"),
               keyboardType: TextInputType.multiline,
               minLines: 6,
               maxLines: null,
