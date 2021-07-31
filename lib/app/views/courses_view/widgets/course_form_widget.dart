@@ -38,6 +38,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
               initialValue: course.name?.value,
               onChanged: updateName,
               validator: RequiredValidator(errorText: "Campo obrigatório"),
+              maxLength: 100,
               decoration: InputDecoration(
                 labelText: "Nome do Curso:",
                 border: OutlineInputBorder(),
@@ -50,6 +51,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
               keyboardType: TextInputType.multiline,
               minLines: 6,
               maxLines: null,
+              maxLength: 1000,
               decoration: InputDecoration(
                 alignLabelWithHint: true,
                 labelText: "Descrição do Curso:",
