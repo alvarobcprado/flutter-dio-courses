@@ -14,19 +14,29 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Nome do Curso:",
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Nome do Curso:",
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Descrição do Curso:",
+            SizedBox(height: 16),
+            TextFormField(
+              keyboardType: TextInputType.multiline,
+              minLines: 6,
+              maxLines: null,
+              decoration: InputDecoration(
+                alignLabelWithHint: true,
+                labelText: "Descrição do Curso:",
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
