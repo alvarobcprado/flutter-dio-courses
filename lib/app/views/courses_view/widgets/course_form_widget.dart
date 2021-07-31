@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/repositories/course_repository/course_repository.dart';
+import 'package:dio_cursos/app/views/home_view/home_view.dart';
+import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
+import 'package:dio_cursos/main.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CourseFormWidget extends StatefulWidget {
   const CourseFormWidget({
@@ -16,6 +22,7 @@ class CourseFormWidget extends StatefulWidget {
 class _CourseFormWidgetState extends State<CourseFormWidget> {
   final _formKey = GlobalKey<FormState>();
   final CourseRepository _repository = Get.put(CourseRepository());
+  final picker = ImagePicker();
 
   CourseModel course = CourseModel();
 
@@ -32,8 +39,19 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
       key: _formKey,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: ListView(
           children: [
+            Visibility(
+              child: GestureDetector(
+                onTap: updateImage,
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  child: Obx(() => course.logoImage.value),
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
             TextFormField(
               initialValue: course.name?.value,
               onChanged: updateName,
@@ -61,16 +79,39 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             SizedBox(height: 24),
             TextButton(
               onPressed: validateForm,
-              child: Text("Salvar"),
               style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
+                padding: EdgeInsets.all(10),
+                backgroundColor: MyApp.color[400],
                 primary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.save),
+                  SizedBox(width: 5),
+                  Text(
+                    "Salvar",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void updateImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      course.logoImage.value = Image.file(
+        File(pickedFile.path),
+      );
+    }
   }
 
   void updateName(name) {
