@@ -15,7 +15,18 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
     return Form(
       key: _formKey,
       child: Column(
-        children: [],
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Nome do Curso:",
+            ),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Descrição do Curso:",
+            ),
+          ),
+        ],
       ),
     );
   }
