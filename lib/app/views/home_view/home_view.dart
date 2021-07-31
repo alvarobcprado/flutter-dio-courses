@@ -18,8 +18,29 @@ class HomeView extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppBarWidget(),
+              Container(),
+              TextButton(
+                onPressed: () {
+                  Get.toNamed("/courses");
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(10),
+                  backgroundColor: Colors.black54,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: Text(
+                  "Adicionar novo curso",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
