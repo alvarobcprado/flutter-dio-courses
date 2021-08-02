@@ -1,9 +1,12 @@
+import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/course_form_widget.dart';
+import 'package:get/get.dart';
 
 class CoursesView extends StatelessWidget {
-  const CoursesView({Key? key}) : super(key: key);
+  final CourseModel course =
+      Get.arguments ?? CourseModel(name: "".obs, description: "".obs);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,7 @@ class CoursesView extends StatelessWidget {
       appBar: AppBar(
         title: Text("Formulário"),
       ),
-      body: CourseFormWidget(),
+      body: CourseFormWidget(course: course),
     );
   }
 }
