@@ -9,12 +9,13 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CourseFormWidget extends StatefulWidget {
+  final CourseModel course;
   const CourseFormWidget({
-    Key? key,
-  }) : super(key: key);
+    required this.course,
+  });
 
   @override
-  _CourseFormWidgetState createState() => _CourseFormWidgetState();
+  _CourseFormWidgetState createState() => _CourseFormWidgetState(course);
 }
 
 class _CourseFormWidgetState extends State<CourseFormWidget> {
@@ -22,7 +23,9 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
   final CourseRepository _repository = Get.put(CourseRepository());
   final picker = ImagePicker();
 
-  CourseModel course = CourseModel();
+  _CourseFormWidgetState(this.course);
+
+  CourseModel course;
 
   void validateForm() {
     if (_formKey.currentState!.validate()) {
@@ -51,7 +54,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             ),
             SizedBox(height: 16),
             TextFormField(
-              initialValue: course.name?.value,
+              initialValue: course.name.value,
               onChanged: updateName,
               validator: RequiredValidator(errorText: "Campo obrigatório"),
               maxLength: 100,
@@ -62,7 +65,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             ),
             SizedBox(height: 16),
             TextFormField(
-              initialValue: course.description?.value,
+              initialValue: course.description.value,
               validator: RequiredValidator(errorText: "Campo obrigatório"),
               keyboardType: TextInputType.multiline,
               minLines: 6,
@@ -113,10 +116,10 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
   }
 
   void updateName(name) {
-    course.name?.value = name;
+    course.name.value = name;
   }
 
   void updateDescription(description) {
-    course.name?.value = description;
+    course.name.value = description;
   }
 }
