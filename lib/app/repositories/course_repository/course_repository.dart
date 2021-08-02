@@ -26,8 +26,20 @@ class CourseRepository {
     CourseModel(
       name: "Teste Curso 6".obs,
       description: "Teste descrição".obs,
-    )
-  ];
+    ),
+    CourseModel(
+      name: "Teste Curso 7".obs,
+      description: "Teste descrição".obs,
+    ),
+    CourseModel(
+      name: "Teste Curso 8".obs,
+      description: "Teste descrição".obs,
+    ),
+    CourseModel(
+      name: "Teste Curso 9".obs,
+      description: "Teste descrição".obs,
+    ),
+  ].obs;
 
   void save(CourseModel course) {
     if (courses.contains(course)) {
