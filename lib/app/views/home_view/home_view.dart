@@ -12,16 +12,16 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height,
         decoration: BackgroundBoxDecoration.getBoxDecoration(),
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppBarWidget(),
-              CoursesListView(),
-              Container(),
+              Expanded(child: CoursesListView()),
               TextButton(
                 onPressed: () {
                   Get.toNamed("/courses");
