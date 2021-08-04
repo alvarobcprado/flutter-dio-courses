@@ -1,3 +1,4 @@
+import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 import 'widgets/courses_list_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  final CourseController courseCtrl = Get.put(CourseController());
 
   @override
   Widget build(BuildContext context) {

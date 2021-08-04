@@ -1,21 +1,20 @@
-import 'package:dio_cursos/app/models/course_model/course_model.dart';
-import 'package:dio_cursos/app/repositories/course_repository/course_repository.dart';
+import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class CoursesListView extends StatelessWidget {
-  final CourseRepository courseRepo = Get.put(CourseRepository());
+  final CourseController courseCtrl = Get.find<CourseController>();
 
   @override
   Widget build(BuildContext context) {
-    var courseList = courseRepo.findAllCourses();
+    //var courseList = courseRepo.findAllCourses();
 
     return Obx(() => ListView.separated(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemBuilder: (builder, index) {
-            var course = courseList[index];
+            var course = courseCtrl.courseList[index];
             return Slidable(
               direction: Axis.horizontal,
               actionPane: SlidableDrawerActionPane(),
@@ -30,33 +29,26 @@ class CoursesListView extends StatelessWidget {
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
+                onTap: () => courseCtrl.navigateToEditCourse(course),
               ),
               secondaryActions: [
                 IconSlideAction(
                   caption: "Editar",
                   color: Colors.black45,
                   icon: Icons.edit,
-                  onTap: () => _navigateToEdit(course),
+                  onTap: () => courseCtrl.navigateToEditCourse(course),
                 ),
                 IconSlideAction(
                   caption: "Deletar",
                   color: Colors.red,
                   icon: Icons.delete,
-                  onTap: () => _deleteCourse(course),
+                  onTap: () => courseCtrl.deleteCourse(course),
                 ),
               ],
             );
           },
           separatorBuilder: (context, index) => Divider(),
-          itemCount: courseList.length,
+          itemCount: courseCtrl.courseList.length,
         ));
-  }
-
-  _navigateToEdit(CourseModel course) {
-    Get.toNamed("/courses", arguments: course);
-  }
-
-  _deleteCourse(CourseModel course) {
-    courseRepo.remove(course);
   }
 }
