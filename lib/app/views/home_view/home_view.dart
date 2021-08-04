@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'widgets/courses_list_view.dart';
 
 class HomeView extends StatelessWidget {
-  final CourseController courseCtrl = Get.put(CourseController());
+  final courseCtrl = Get.put<CourseController>(CourseController());
 
   @override
   Widget build(BuildContext context) {

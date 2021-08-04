@@ -41,18 +41,17 @@ class CourseRepository {
     ),
   ].obs;
 
-  void save(CourseModel course) {
-    if (courses.contains(course)) {
-      courses.remove(course);
+  void save(CourseModel course, RxList<CourseModel> courseList) {
+    if (!courseList.contains(course)) {
+      courseList.add(course);
     }
-    courses.add(course);
   }
 
-  void remove(CourseModel course) {
-    courses.remove(course);
+  void remove(CourseModel course, RxList<CourseModel> courseList) {
+    courseList.remove(course);
   }
 
-  List<CourseModel> findAllCourses() {
+  RxList<CourseModel> findAllCourses() {
     return courses;
   }
 }

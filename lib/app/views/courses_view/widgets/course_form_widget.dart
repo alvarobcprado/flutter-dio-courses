@@ -1,38 +1,20 @@
 import 'dart:io';
 
+import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
-import 'package:dio_cursos/app/repositories/course_repository/course_repository.dart';
 import 'package:dio_cursos/main.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class CourseFormWidget extends StatefulWidget {
+class CourseFormWidget extends StatelessWidget {
   final CourseModel course;
-  const CourseFormWidget({
-    required this.course,
-  });
+  CourseFormWidget({Key? key, required this.course}) : super(key: key);
 
-  @override
-  _CourseFormWidgetState createState() => _CourseFormWidgetState(course);
-}
-
-class _CourseFormWidgetState extends State<CourseFormWidget> {
   final _formKey = GlobalKey<FormState>();
-  final CourseRepository _repository = Get.put(CourseRepository());
+  final courseCtrl = Get.find<CourseController>();
   final picker = ImagePicker();
-
-  _CourseFormWidgetState(this.course);
-
-  CourseModel course;
-
-  void validateForm() {
-    if (_formKey.currentState!.validate()) {
-      _repository.save(course);
-      Get.back();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +26,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
           children: [
             Visibility(
               child: GestureDetector(
-                onTap: updateImage,
+                onTap: () => courseCtrl.updateImage(course, picker),
                 child: Container(
                   height: 200,
                   width: 200,
@@ -55,7 +37,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             SizedBox(height: 16),
             TextFormField(
               initialValue: course.name.value,
-              onChanged: updateName,
+              onChanged: (name) => courseCtrl.updateName(course, name),
               validator: RequiredValidator(errorText: "Campo obrigatório"),
               maxLength: 100,
               decoration: InputDecoration(
@@ -67,7 +49,8 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             TextFormField(
               initialValue: course.description.value,
               validator: RequiredValidator(errorText: "Campo obrigatório"),
-              keyboardType: TextInputType.multiline,
+              onChanged: (description) =>
+                  courseCtrl.updateDescription(course, description),
               minLines: 6,
               maxLines: null,
               maxLength: 1000,
@@ -79,7 +62,7 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
             ),
             SizedBox(height: 24),
             TextButton(
-              onPressed: validateForm,
+              onPressed: () => courseCtrl.validateForm(course, _formKey),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.all(10),
                 backgroundColor: MyApp.color[400],
@@ -104,22 +87,5 @@ class _CourseFormWidgetState extends State<CourseFormWidget> {
         ),
       ),
     );
-  }
-
-  void updateImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      course.logoImage.value = Image.file(
-        File(pickedFile.path),
-      );
-    }
-  }
-
-  void updateName(name) {
-    course.name.value = name;
-  }
-
-  void updateDescription(description) {
-    course.name.value = description;
   }
 }

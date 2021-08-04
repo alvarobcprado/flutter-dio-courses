@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class CoursesListView extends StatelessWidget {
-  final CourseController courseCtrl = Get.find<CourseController>();
+  final courseCtrl = Get.find<CourseController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,15 @@ class CoursesListView extends StatelessWidget {
               actionPane: SlidableDrawerActionPane(),
               actionExtentRatio: 0.25,
               child: ListTile(
-                leading: CircleAvatar(
-                  child: course.logoImage.value,
-                ),
-                title: Text(
-                  course.name.value,
-                  style: TextStyle(color: Colors.white70),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                leading: Obx(() => CircleAvatar(
+                      child: course.logoImage.value,
+                    )),
+                title: Obx(() => Text(
+                      course.name.value,
+                      style: TextStyle(color: Colors.white70),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    )),
                 onTap: () => courseCtrl.navigateToEditCourse(course),
               ),
               secondaryActions: [
