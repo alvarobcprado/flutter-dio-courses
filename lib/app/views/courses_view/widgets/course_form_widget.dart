@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/main.dart';
