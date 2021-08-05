@@ -21,11 +21,13 @@ class CoursesListView extends StatelessWidget {
               actionExtentRatio: 0.25,
               child: ListTile(
                 leading: Obx(() => CircleAvatar(
-                      child: course.logoImage.value,
+                      radius: 25,
+                      backgroundImage: course.logoImage.value.image,
+                      backgroundColor: Colors.transparent,
                     )),
                 title: Obx(() => Text(
                       course.name.value,
-                      style: TextStyle(color: Colors.white70),
+                      style: TextStyle(color: Colors.white),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     )),

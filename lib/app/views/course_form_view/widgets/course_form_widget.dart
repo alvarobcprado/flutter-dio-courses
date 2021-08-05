@@ -28,7 +28,11 @@ class CourseFormWidget extends StatelessWidget {
                 child: Container(
                   height: 200,
                   width: 200,
-                  child: Obx(() => course.logoImage.value),
+                  child: Obx(
+                    () => CircleAvatar(
+                      backgroundImage: course.logoImage.value.image,
+                    ),
+                  ),
                 ),
               ),
             ),
