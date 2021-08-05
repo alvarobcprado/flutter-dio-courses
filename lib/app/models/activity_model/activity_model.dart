@@ -13,4 +13,8 @@ class ActivityModel {
     check,
     required this.course,
   }) : checked = check ?? false.obs;
+
+  ActivityModel.empty({required this.course})
+      : name = ''.obs,
+        checked = false.obs;
 }

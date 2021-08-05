@@ -1,4 +1,6 @@
+import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
+import 'package:dio_cursos/app/views/activity_form_view/activity_form_view.dart';
 import 'package:dio_cursos/app/views/activity_view/widgets/Activity_listing_widget.dart';
 
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
@@ -28,7 +30,17 @@ class ActivityView extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Get.defaultDialog();
+                  Get.defaultDialog(
+                    title: "Adicionar Atividade",
+                    titleStyle: TextStyle(fontSize: 25, color: Colors.red),
+                    content: Container(
+                      height: 200,
+                      padding: const EdgeInsets.all(8.0),
+                      child: ActivityFormView(
+                        activity: ActivityModel.empty(course: course),
+                      ),
+                    ),
+                  );
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.all(10),

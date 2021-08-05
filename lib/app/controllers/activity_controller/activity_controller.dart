@@ -1,6 +1,7 @@
 import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/repositories/activity_repository.dart/activity_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ActivityController extends GetxController {
@@ -30,16 +31,16 @@ class ActivityController extends GetxController {
   //   courseRepo.save(course, courseList);
   // }
 
-  // void validateForm(CourseModel course, GlobalKey<FormState> formKey) {
-  //   if (formKey.currentState!.validate()) {
-  //     saveCourse(course);
-  //     Get.back();
-  //   }
-  // }
+  void validateForm(ActivityModel activity, GlobalKey<FormState> formKey) {
+    if (formKey.currentState!.validate()) {
+      saveActivity(activity);
+      Get.back();
+    }
+  }
 
-  // void updateName(CourseModel course, String name) {
-  //   course.name.value = name;
-  // }
+  void updateName(ActivityModel activity, String name) {
+    activity.name.value = name;
+  }
 
   // void updateDescription(CourseModel course, String description) {
   //   course.description.value = description;
