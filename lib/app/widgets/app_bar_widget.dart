@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
+  final Widget? image;
+  final String? title;
+
+  const AppBarWidget({Key? key, this.image, this.title}) : super(key: key);
+
+  Image getImage() {
+    return Image.asset(
+      "assets/imgs/logo.png",
+      key: Key("logo_img_key"),
+      scale: 1.5,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Image.asset(
-          'assets/imgs/logo.png',
-          key: Key("logo_image_key"),
-          scale: 1.5,
-        ),
+      child: Row(
+        children: [
+          image ?? getImage(),
+          Visibility(
+            visible: this.title != null,
+            child: Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  this.title ?? "",
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

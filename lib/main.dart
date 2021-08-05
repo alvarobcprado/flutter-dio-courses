@@ -1,7 +1,8 @@
+import 'package:dio_cursos/app/views/activity_view/activity_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app/views/courses_view/courses_view.dart';
+import 'app/views/course_form_view/course_form_view.dart';
 import 'app/views/home_view/home_view.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Cursos DIO',
       theme: ThemeData(
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Colors.black12,
@@ -48,7 +49,10 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       getPages: [
         GetPage(name: '/', page: () => HomeView()),
-        GetPage(name: '/courses', page: () => CoursesView()),
+        GetPage(name: '/courses', page: () => CourseFormView()),
+        GetPage(
+            name: '/activities',
+            page: () => ActivityView(course: Get.arguments))
       ],
     );
   }

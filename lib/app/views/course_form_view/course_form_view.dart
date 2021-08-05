@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'widgets/course_form_widget.dart';
 import 'package:get/get.dart';
 
-class CoursesView extends StatelessWidget {
+class CourseFormView extends StatelessWidget {
   final CourseModel course =
       Get.arguments ?? CourseModel(name: "".obs, description: "".obs);
 
