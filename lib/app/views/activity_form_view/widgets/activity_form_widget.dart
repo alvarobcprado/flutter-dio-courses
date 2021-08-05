@@ -3,7 +3,6 @@ import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../main.dart';
 
@@ -13,7 +12,6 @@ class ActivityFormWidget extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
   final activityCtrl = Get.find<ActivityController>();
-  final picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {

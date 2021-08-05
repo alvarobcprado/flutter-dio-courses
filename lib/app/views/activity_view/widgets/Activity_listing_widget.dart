@@ -24,31 +24,40 @@ class ActivityListingWidget extends StatelessWidget {
         itemCount: activities.length,
         itemBuilder: (builder, index) {
           var activity = activities[index];
-          return Slidable(
-            actionPane: SlidableDrawerActionPane(),
-            actionExtentRatio: 0.25,
-            child: Obx(
-              () => CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: activity.checked.value,
-                onChanged: (value) => activity.checked.value = value!,
-                title: Text(
-                  activity.name.value,
-                  style: TextStyle(color: Colors.white),
+          if (activity.course == course) {
+            return Slidable(
+              actionPane: SlidableDrawerActionPane(),
+              actionExtentRatio: 0.25,
+              child: Obx(
+                () => CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: activity.checked.value,
+                  onChanged: (value) => activity.checked.value = value!,
+                  title: Text(
+                    activity.name.value,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-            secondaryActions: [
-              IconSlideAction(
-                caption: "Deletar",
-                color: Colors.red,
-                icon: Icons.delete,
-                onTap: () => activityCtrl.deleteActivity(activity),
-              ),
-            ],
-          );
+              secondaryActions: [
+                IconSlideAction(
+                  caption: "Deletar",
+                  color: Colors.red,
+                  icon: Icons.delete,
+                  onTap: () => activityCtrl.deleteActivity(activity),
+                ),
+              ],
+            );
+          } else {
+            return SizedBox(
+              height: 0,
+            );
+          }
         },
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) {
+          var activity = activities[index];
+          return activity.course == course ? Divider() : SizedBox(height: 0);
+        },
       );
     });
   }
