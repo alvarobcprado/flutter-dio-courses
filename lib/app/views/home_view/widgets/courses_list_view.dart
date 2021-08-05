@@ -29,7 +29,7 @@ class CoursesListView extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     )),
-                onTap: () => courseCtrl.navigateToEditCourse(course),
+                onTap: () => Get.toNamed("activities", arguments: course),
               ),
               secondaryActions: [
                 IconSlideAction(

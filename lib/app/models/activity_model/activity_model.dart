@@ -4,12 +4,13 @@ import '../course_model/course_model.dart';
 
 class ActivityModel {
   final RxString name;
-  RxBool checked = false.obs;
+  RxBool checked;
   final CourseModel course;
+  late RxBool check;
 
   ActivityModel({
     required this.name,
-    required this.checked,
+    check,
     required this.course,
-  });
+  }) : checked = check ?? false.obs;
 }
