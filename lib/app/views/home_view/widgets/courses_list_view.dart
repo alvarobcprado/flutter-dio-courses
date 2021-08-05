@@ -20,11 +20,13 @@ class CoursesListView extends StatelessWidget {
               actionPane: SlidableDrawerActionPane(),
               actionExtentRatio: 0.25,
               child: ListTile(
-                leading: Obx(() => CircleAvatar(
-                      radius: 25,
-                      backgroundImage: course.logoImage.value.image,
-                      backgroundColor: Colors.transparent,
-                    )),
+                leading: Obx(
+                  () => CircleAvatar(
+                    radius: 30,
+                    backgroundImage: course.logoImage.value.image,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
                 title: Obx(() => Text(
                       course.name.value,
                       style: TextStyle(color: Colors.white),

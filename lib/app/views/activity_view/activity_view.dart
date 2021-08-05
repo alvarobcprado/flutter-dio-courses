@@ -2,6 +2,7 @@ import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/views/activity_form_view/activity_form_view.dart';
 import 'package:dio_cursos/app/views/activity_view/widgets/Activity_listing_widget.dart';
+import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,14 @@ class ActivityView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(course.name.value),
+        title: AppBarWidget(
+          title: course.name.value,
+          image: CircleAvatar(
+            backgroundImage: course.logoImage.value.image,
+            radius: 25,
+            backgroundColor: Colors.transparent,
+          ),
+        ),
       ),
       body: Container(
         decoration: BackgroundBoxDecoration.getBoxDecoration(),

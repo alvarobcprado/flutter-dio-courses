@@ -16,24 +16,23 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(
-        children: [
-          image ?? getImage(),
-          Visibility(
-            visible: this.title != null,
-            child: Flexible(
-              child: Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  this.title ?? "",
-                  overflow: TextOverflow.ellipsis,
-                ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        image ?? getImage(),
+        Visibility(
+          visible: this.title != null,
+          child: Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                this.title ?? "",
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
