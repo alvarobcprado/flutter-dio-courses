@@ -27,6 +27,20 @@ class CoursesListingWidget extends StatelessWidget {
               child: Obx(
                 () => _buildCourseListTile(course),
               ),
+              actions: [
+                Obx(
+                  () => Visibility(
+                    visible: course.link.value.isNotEmpty,
+                    child: IconSlideAction(
+                      caption: "Acessar",
+                      color: Colors.yellow[600],
+                      icon: Icons.send,
+                      onTap: () =>
+                          courseCtrl.navigateToCourseWebView(course.link.value),
+                    ),
+                  ),
+                ),
+              ],
               secondaryActions: [
                 IconSlideAction(
                   caption: "Editar",
@@ -73,9 +87,11 @@ class CoursesListingWidget extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
-          _progressCourseBar(
-            percentCompleted: completedActivities / activities.length,
-          ),
+          activities.length > 0
+              ? _progressCourseBar(
+                  percentCompleted: completedActivities / activities.length,
+                )
+              : Container(),
         ],
       ),
       onTap: () => Get.toNamed("activities", arguments: course),
