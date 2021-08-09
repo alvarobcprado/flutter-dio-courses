@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:dio_cursos/app/controllers/activity_controller/activity_controller.dart';
 import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
@@ -99,29 +98,18 @@ class CoursesListingWidget extends StatelessWidget {
   }
 
   Widget _progressCourseBar({required double percentCompleted}) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            height: 10,
-            child: ClipRRect(
-              child: LinearProgressIndicator(
-                value: percentCompleted,
-                backgroundColor: Colors.grey.withAlpha(50),
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(8),
-          child: Text(
-            (percentCompleted * 100).round().toString() + "%",
-            style: TextStyle(color: Colors.white),
-          ),
-        )
-      ],
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: LinearPercentIndicator(
+        width: Get.context!.width - 140,
+        animation: true,
+        lineHeight: 20,
+        animationDuration: 1000,
+        percent: percentCompleted,
+        center: Text("${(percentCompleted * 100).toStringAsFixed(2)}%"),
+        linearStrokeCap: LinearStrokeCap.roundAll,
+        progressColor: Colors.yellow,
+      ),
     );
   }
 }
