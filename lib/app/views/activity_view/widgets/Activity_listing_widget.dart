@@ -1,6 +1,7 @@
 import 'package:dio_cursos/app/controllers/activity_controller/activity_controller.dart';
 import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
+import 'package:dio_cursos/app/views/activity_view/widgets/activity_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,13 @@ class ActivityListingWidget extends StatelessWidget {
                 ),
               ),
               secondaryActions: [
+                IconSlideAction(
+                  caption: "Editar",
+                  color: Colors.black45,
+                  icon: Icons.edit,
+                  onTap: () =>
+                      ActivityDialogWidget.showDialog(activity: activity),
+                ),
                 IconSlideAction(
                   caption: "Deletar",
                   color: Colors.red,
