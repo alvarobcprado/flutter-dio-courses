@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/repositories/course_repository/course_repository.dart';
+import 'package:dio_cursos/app/views/course_webview/course_webview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,6 +49,18 @@ class CourseController extends GetxController {
     if (pickedFile != null) {
       course.logoImage.value = Image.file(
         File(pickedFile.path),
+      );
+    }
+  }
+
+  updateLink(CourseModel course, String link) {
+    course.link.value = link;
+  }
+
+  navigateToCourseWebView(String? value) {
+    if (value != null) {
+      Get.to(
+        CourseWebView(url: value),
       );
     }
   }

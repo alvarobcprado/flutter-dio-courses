@@ -49,6 +49,16 @@ class CourseFormWidget extends StatelessWidget {
             ),
             SizedBox(height: 16),
             TextFormField(
+              initialValue: course.link.value,
+              onChanged: (link) => courseCtrl.updateLink(course, link),
+              maxLength: 200,
+              decoration: InputDecoration(
+                labelText: "Link do curso:",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextFormField(
               initialValue: course.description.value,
               validator: RequiredValidator(errorText: "Campo obrigatório"),
               onChanged: (description) =>
