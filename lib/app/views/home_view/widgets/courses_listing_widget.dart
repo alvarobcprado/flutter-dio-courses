@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
-class CoursesListView extends StatelessWidget {
+class CoursesListingWidget extends StatelessWidget {
   final courseCtrl = Get.find<CourseController>();
   final activityCtrl = Get.put<ActivityController>(ActivityController());
 
