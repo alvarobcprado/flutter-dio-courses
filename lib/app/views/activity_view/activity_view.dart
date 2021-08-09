@@ -7,11 +7,10 @@ import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ActivityView extends StatelessWidget {
-  final CourseModel course;
-
-  const ActivityView({Key? key, required this.course}) : super(key: key);
+  final CourseModel course = Get.arguments['actView'];
 
   @override
   Widget build(BuildContext context) {

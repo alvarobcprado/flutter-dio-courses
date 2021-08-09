@@ -23,12 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get:
+  get: ^4.3.6
   form_field_validator: ^1.1.0
   image_picker: ^0.8.2
-  flutter_slidable:
-  webview_flutter:
-  percent_indicator:
+  flutter_slidable: ^0.6.0
+  webview_flutter: ^2.0.10
+  percent_indicator: ^3.3.0-nullsafety.1
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -106,7 +106,7 @@ packages:
       name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2"
+    version: "4.3.6"
   http:
     dependency: transitive
     description:
@@ -190,7 +190,7 @@ packages:
       name: percent_indicator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.3.0-nullsafety.1"
   plugin_platform_interface:
     dependency: transitive
     description:

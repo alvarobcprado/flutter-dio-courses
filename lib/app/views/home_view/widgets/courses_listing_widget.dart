@@ -93,7 +93,7 @@ class CoursesListingWidget extends StatelessWidget {
               : Container(),
         ],
       ),
-      onTap: () => Get.toNamed("activities", arguments: course),
+      onTap: () => activityCtrl.navigateToActivitiesListing(course),
     );
   }
 

@@ -1,4 +1,3 @@
-import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/views/activity_view/activity_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,9 +50,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => HomeView()),
         GetPage(name: '/courses', page: () => CourseFormView()),
-        GetPage(
-            name: '/activities',
-            page: () => ActivityView(course: Get.arguments as CourseModel))
+        GetPage(name: '/activities', page: () => ActivityView())
       ],
     );
   }

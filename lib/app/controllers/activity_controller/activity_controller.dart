@@ -19,9 +19,9 @@ class ActivityController extends GetxController {
     return _repo.findAllActivityByCourse(course);
   }
 
-  // void navigateToEditCourse(CourseModel course) {
-  //   Get.toNamed("/courses", arguments: course);
-  // }
+  void navigateToActivitiesListing(CourseModel course) {
+    Get.toNamed("/activities", arguments: {'actView': course});
+  }
 
   // void deleteCourse(CourseModel course) {
   //   courseList.remove(course);
