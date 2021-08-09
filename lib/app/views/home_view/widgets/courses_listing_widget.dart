@@ -24,7 +24,9 @@ class CoursesListingWidget extends StatelessWidget {
               direction: Axis.horizontal,
               actionPane: SlidableDrawerActionPane(),
               actionExtentRatio: 0.25,
-              child: _buildCourseListTile(course),
+              child: Obx(
+                () => _buildCourseListTile(course),
+              ),
               secondaryActions: [
                 IconSlideAction(
                   caption: "Editar",
@@ -51,39 +53,29 @@ class CoursesListingWidget extends StatelessWidget {
     var completedActivities =
         activities.where((e) => e.checked.value == true).length;
     return ListTile(
-      leading: Obx(
-        () => CircleAvatar(
-          radius: 30,
-          backgroundImage: course.logoImage.value.image,
-          backgroundColor: Colors.transparent,
-        ),
+      leading: CircleAvatar(
+        radius: 30,
+        backgroundImage: course.logoImage.value.image,
+        backgroundColor: Colors.transparent,
       ),
-      title: Obx(
-        () => Text(
-          course.name.value,
-          style: TextStyle(color: Colors.white),
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
+      title: Text(
+        course.name.value,
+        style: TextStyle(color: Colors.white),
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Obx(
-            () => Text(
-              course.description.value,
-              style: TextStyle(color: Colors.white70),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
+          Text(
+            course.description.value,
+            style: TextStyle(color: Colors.white70),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
           ),
-          activities.length > 0
-              ? Obx(
-                  () => _progressCourseBar(
-                    percentCompleted: completedActivities / activities.length,
-                  ),
-                )
-              : Container(),
+          _progressCourseBar(
+            percentCompleted: completedActivities / activities.length,
+          ),
         ],
       ),
       onTap: () => Get.toNamed("activities", arguments: course),

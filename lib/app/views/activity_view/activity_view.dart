@@ -33,8 +33,10 @@ class ActivityView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ActivityListingWidget(
-                course: course,
+              Expanded(
+                child: ActivityListingWidget(
+                  course: course,
+                ),
               ),
               TextButton(
                 onPressed: () {
