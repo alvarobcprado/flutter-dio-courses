@@ -18,7 +18,7 @@ class CourseController extends GetxController {
   }
 
   void navigateToEditCourse(CourseModel course) {
-    Get.toNamed("/courses", arguments: course);
+    Get.toNamed("/courses", arguments: {'courseForm': course});
   }
 
   void deleteCourse(CourseModel course) {
