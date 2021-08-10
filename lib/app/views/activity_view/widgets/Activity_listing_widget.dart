@@ -8,10 +8,7 @@ import 'package:get/get.dart';
 
 class ActivityListingWidget extends StatelessWidget {
   final CourseModel course;
-  final ActivityController activityCtrl = Get.put(
-    ActivityController(),
-    permanent: true,
-  );
+  final ActivityController activityCtrl = Get.find<ActivityController>();
   ActivityListingWidget({Key? key, required this.course}) : super(key: key);
 
   @override

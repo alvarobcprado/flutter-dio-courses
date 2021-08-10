@@ -1,3 +1,4 @@
+import 'package:dio_cursos/app/controllers/activity_controller/activity_controller.dart';
 import 'package:dio_cursos/app/models/activity_model/activity_model.dart';
 import 'package:dio_cursos/app/models/course_model/course_model.dart';
 
@@ -8,9 +9,14 @@ import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ActivityView extends StatelessWidget {
   final CourseModel course = Get.arguments['actView'];
+  final ActivityController activityCtrl = Get.put(
+    ActivityController(),
+    //permanent: true,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,9 @@ class ActivityView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Container(
+                child: Obx(() => _circlePercentCompletedActivities()),
+              ),
               Expanded(
                 child: ActivityListingWidget(
                   course: course,
@@ -59,6 +68,28 @@ class ActivityView extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _circlePercentCompletedActivities() {
+    var percentCompleted = activityCtrl.getActivityCompletedPercent(course);
+    return Visibility(
+      visible: !percentCompleted.isNaN,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: CircularPercentIndicator(
+          lineWidth: 15,
+          radius: 150,
+          animation: true,
+          animationDuration: 1000,
+          percent: percentCompleted.value,
+          progressColor: Colors.yellow,
+          center: Text(
+            "${(percentCompleted.value * 100).toStringAsFixed(2)}%",
+            style: TextStyle(fontSize: 20),
           ),
         ),
       ),

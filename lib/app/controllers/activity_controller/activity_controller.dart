@@ -23,13 +23,12 @@ class ActivityController extends GetxController {
     Get.toNamed("/activities", arguments: {'actView': course});
   }
 
-  // void deleteCourse(CourseModel course) {
-  //   courseList.remove(course);
-  // }
-
-  // void saveCourse(CourseModel course) {
-  //   courseRepo.save(course, courseList);
-  // }
+  RxDouble getActivityCompletedPercent(CourseModel course) {
+    var activities = findAllActivitiesByCourse(course);
+    var completedActivities =
+        activities.where((e) => e.checked.value == true).length;
+    return (completedActivities / activities.length).toDouble().obs;
+  }
 
   void validateForm(ActivityModel activity, GlobalKey<FormState> formKey) {
     if (formKey.currentState!.validate()) {
@@ -41,9 +40,4 @@ class ActivityController extends GetxController {
   void updateName(ActivityModel activity, String name) {
     activity.name.value = name;
   }
-
-  // void updateDescription(CourseModel course, String description) {
-  //   course.description.value = description;
-  // }
-
 }
