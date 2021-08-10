@@ -5,8 +5,7 @@ import 'widgets/course_form_widget.dart';
 import 'package:get/get.dart';
 
 class CourseFormView extends StatelessWidget {
-  final CourseModel course = Get.arguments['courseForm'] ??
-      CourseModel(name: "".obs, description: "".obs);
+  final CourseModel course = Get.arguments['courseForm'];
 
   @override
   Widget build(BuildContext context) {

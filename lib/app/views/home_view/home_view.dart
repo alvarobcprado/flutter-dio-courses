@@ -1,4 +1,5 @@
 import 'package:dio_cursos/app/controllers/course_controller/course_controller.dart';
+import 'package:dio_cursos/app/models/course_model/course_model.dart';
 import 'package:dio_cursos/app/widgets/app_bar_widget.dart';
 import 'package:dio_cursos/app/widgets/background_box_decoration.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,10 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: TextButton(
                   onPressed: () {
-                    Get.toNamed("/courses");
+                    Get.toNamed("/courses", arguments: {
+                      'courseForm':
+                          CourseModel(name: "".obs, description: "".obs)
+                    });
                   },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.all(10),

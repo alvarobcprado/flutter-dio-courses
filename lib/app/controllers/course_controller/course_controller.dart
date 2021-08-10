@@ -12,8 +12,8 @@ class CourseController extends GetxController {
   RxList<CourseModel> courseList = <CourseModel>[].obs;
 
   @override
-  void onInit() {
-    courseList = courseRepo.findAllCourses();
+  void onInit() async {
+    courseList = await courseRepo.findAllCourses();
     super.onInit();
   }
 
@@ -22,7 +22,8 @@ class CourseController extends GetxController {
   }
 
   void deleteCourse(CourseModel course) {
-    courseList.remove(course);
+    // courseList.remove(course);
+    courseRepo.remove(course, courseList);
   }
 
   void saveCourse(CourseModel course) {
@@ -47,6 +48,7 @@ class CourseController extends GetxController {
   void updateImage(CourseModel course, ImagePicker picker) async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
+      course.imagePath.value = pickedFile.path;
       course.logoImage.value = Image.file(
         File(pickedFile.path),
       );
