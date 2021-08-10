@@ -10,11 +10,16 @@ import 'package:image_picker/image_picker.dart';
 class CourseController extends GetxController {
   final CourseRepository courseRepo = CourseRepository();
   RxList<CourseModel> courseList = <CourseModel>[].obs;
+  final isLoading = true.obs;
 
   @override
   void onInit() async {
     courseList = await courseRepo.findAllCourses();
     super.onInit();
+    Future.delayed(
+      Duration(seconds: 1),
+      () => isLoading.value = false,
+    );
   }
 
   void navigateToEditCourse(CourseModel course) {
